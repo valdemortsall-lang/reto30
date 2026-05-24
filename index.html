@@ -954,7 +954,7 @@
         <p class="hero-sub">El sistema privado para hombres latinos que quieren retomar el control de su mente, su energía y su tiempo.</p>
         <button class="btn-primary" id="hero-cta" onclick="scrollToQuiz()">Hacer el test gratuito →</button>
         <div class="hero-trust">
-          <div class="hero-trust-item"><span>✦</span> 15,000+ hombres</div>
+          <div class="hero-trust-item"><span>✦</span> 500+ hombres</div>
           <div class="hero-trust-item"><span>✦</span> 100% privado</div>
           <div class="hero-trust-item"><span>✦</span> Sin apps requeridas</div>
         </div>
@@ -1039,7 +1039,7 @@
     <div class="container">
       <div class="stats-grid">
         <div class="stat-item fade-up">
-          <div class="stat-number">15,000+</div>
+          <div class="stat-number">500+</div>
           <div class="stat-label">hombres en el programa</div>
         </div>
         <div class="stat-item fade-up" style="transition-delay:0.1s">
@@ -1076,7 +1076,7 @@
           <p class="quiz-question">¿Cuál es tu principal lucha digital ahora?</p>
           <div class="quiz-options">
             <button class="quiz-option" onclick="selectOption(this,'q1','A')"><span class="quiz-option-letter">A</span>Scroll infinito en redes sociales</button>
-            <button class="quiz-option" onclick="selectOption(this,'q1','B')"><span class="quiz-option-letter">B</span>Contenido que me hace sentir vacío después</button>
+            <button class="quiz-option" onclick="selectOption(this,'q1','B')"><span class="quiz-option-letter">B</span>Contenido adulto que consumo en secreto y me quita energía</button>
             <button class="quiz-option" onclick="selectOption(this,'q1','C')"><span class="quiz-option-letter">C</span>Videojuegos o apuestas online</button>
             <button class="quiz-option" onclick="selectOption(this,'q1','D')"><span class="quiz-option-letter">D</span>Todas las anteriores</button>
           </div>
@@ -1222,11 +1222,11 @@
 
       <div class="offer-box fade-up">
         <span class="offer-badge">⚡ Oferta por tiempo limitado</span>
-        <h3 class="offer-title">Acceso especial al Manual Reto30</h3>
+        <h3 class="offer-title">Acceso especial al El Protocolo Reto30</h3>
         <div class="offer-timer-label">Esta oferta expira en</div>
         <div id="countdown">10:00</div>
         <div class="offer-price">
-          <span class="price-old">$299</span>
+          <span class="price-old">$199</span>
           <span class="price-new">$99 <span class="price-currency">MXN</span></span>
         </div>
         <button class="btn-primary" id="buy-btn" style="width:100%;font-size:1.05rem;padding:18px" onclick="handleBuy()">Quiero mi manual →</button>
@@ -1424,9 +1424,15 @@
 
     function showResults(profileKey) {
       const p = profiles[profileKey];
-      document.getElementById('profile-badge').textContent = p.badge;
-      document.getElementById('profile-title').textContent = p.title;
-      document.getElementById('profile-text').textContent = p.text;
+
+      // Set content before making section visible
+      const badge = document.getElementById('profile-badge');
+      const title = document.getElementById('profile-title');
+      const text  = document.getElementById('profile-text');
+
+      badge.textContent = p.badge;
+      title.textContent = p.title;
+      text.textContent  = p.text;
 
       const resultsSection = document.getElementById('results');
       resultsSection.style.display = 'block';
