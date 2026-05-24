@@ -1,0 +1,1508 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reto30 — Recupera tu enfoque en 30 días</title>
+  <meta name="description" content="El sistema privado para hombres latinos que quieren retomar el control de su mente, su energía y su tiempo. Haz el test gratuito y recibe tu plan personalizado." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ===========================
+       TOKENS & RESET
+    =========================== */
+    :root {
+      --bg: #0D0D0D;
+      --bg-2: #111111;
+      --bg-3: #161616;
+      --bg-4: #1C1C1C;
+      --gold: #C9A84C;
+      --gold-light: #E2C06E;
+      --gold-dim: rgba(201,168,76,0.15);
+      --gold-border: rgba(201,168,76,0.3);
+      --text: #F0EDE8;
+      --text-muted: #888888;
+      --text-dim: #555555;
+      --red: #C0392B;
+      --green: #2ECC71;
+      --radius: 6px;
+      --radius-lg: 12px;
+      --transition: 0.25s ease;
+      --max-w: 900px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    img { max-width: 100%; }
+
+    /* ===========================
+       LAYOUT
+    =========================== */
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section { padding: 96px 0; }
+
+    /* ===========================
+       NAV
+    =========================== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(13,13,13,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+    }
+
+    .nav-cta {
+      background: var(--gold);
+      color: #0D0D0D;
+      padding: 9px 20px;
+      border-radius: var(--radius);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      transition: background var(--transition), transform var(--transition);
+      cursor: pointer;
+      border: none;
+    }
+
+    .nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+    /* ===========================
+       HERO
+    =========================== */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 80px;
+      background: radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.07) 0%, transparent 65%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 39px,
+        rgba(255,255,255,0.015) 39px,
+        rgba(255,255,255,0.015) 40px
+      );
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 80px 0;
+      position: relative;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 28px;
+      padding: 6px 16px;
+      border: 1px solid var(--gold-border);
+      border-radius: 100px;
+      background: var(--gold-dim);
+    }
+
+    .hero-h1 {
+      font-size: clamp(2.6rem, 7vw, 4.5rem);
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 24px;
+      line-height: 1.08;
+    }
+
+    .hero-h1 span { color: var(--gold); }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      color: var(--text-muted);
+      max-width: 560px;
+      margin: 0 auto 44px;
+      font-weight: 300;
+      line-height: 1.75;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--gold);
+      color: #0D0D0D;
+      padding: 17px 40px;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      border: none;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+      box-shadow: 0 0 0 0 rgba(201,168,76,0);
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(201,168,76,0.3);
+    }
+
+    .btn-primary:active { transform: translateY(0); }
+
+    .hero-trust {
+      margin-top: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .hero-trust-item {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-trust-item span { color: var(--gold); }
+
+    /* ===========================
+       SECTION LABEL
+    =========================== */
+    .section-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .section-title {
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 520px;
+      font-weight: 300;
+    }
+
+    /* ===========================
+       BEFORE / AFTER TABLE
+    =========================== */
+    #compare {
+      background: var(--bg-2);
+      border-top: 1px solid rgba(255,255,255,0.04);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+
+    #compare .header { text-align: center; margin-bottom: 52px; }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .compare-table thead tr {
+      background: rgba(255,255,255,0.03);
+    }
+
+    .compare-table thead th {
+      padding: 18px 24px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-align: left;
+    }
+
+    .compare-table thead th:first-child {
+      color: var(--text-muted);
+      border-right: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .compare-table thead th:last-child { color: var(--gold); }
+
+    .compare-table tbody tr {
+      border-top: 1px solid rgba(255,255,255,0.04);
+      transition: background var(--transition);
+    }
+
+    .compare-table tbody tr:hover { background: rgba(255,255,255,0.02); }
+
+    .compare-table tbody td {
+      padding: 20px 24px;
+      font-size: 0.95rem;
+      vertical-align: top;
+      line-height: 1.6;
+    }
+
+    .compare-table tbody td:first-child {
+      color: var(--text-muted);
+      border-right: 1px solid rgba(255,255,255,0.05);
+      padding-left: 20px;
+    }
+
+    .compare-table tbody td:last-child { color: var(--text); }
+
+    .icon-bad { color: #6B3A38; margin-right: 8px; font-size: 1rem; }
+    .icon-good { color: var(--gold); margin-right: 8px; font-size: 1rem; }
+
+    /* ===========================
+       HOW IT WORKS
+    =========================== */
+    #how {
+      background: var(--bg);
+    }
+
+    #how .header { text-align: center; margin-bottom: 60px; }
+    #how .section-sub { margin: 0 auto; text-align: center; }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+
+    .step {
+      background: var(--bg-3);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: var(--radius-lg);
+      padding: 36px 28px;
+      position: relative;
+      transition: border-color var(--transition), transform var(--transition);
+    }
+
+    .step:hover {
+      border-color: var(--gold-border);
+      transform: translateY(-4px);
+    }
+
+    .step-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: var(--gold-dim);
+      line-height: 1;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, var(--gold) 0%, rgba(201,168,76,0.2) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .step h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .step p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ===========================
+       STATS BAR
+    =========================== */
+    #stats {
+      background: linear-gradient(135deg, #111008 0%, #0D0D0D 50%, #0f0e09 100%);
+      border-top: 1px solid var(--gold-border);
+      border-bottom: 1px solid var(--gold-border);
+      padding: 60px 0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      text-align: center;
+    }
+
+    .stat-item {
+      padding: 24px 16px;
+      position: relative;
+    }
+
+    .stat-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0; top: 20%; bottom: 20%;
+      width: 1px;
+      background: var(--gold-border);
+    }
+
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    /* ===========================
+       QUIZ SECTION
+    =========================== */
+    #quiz {
+      background: var(--bg-2);
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+
+    #quiz .header { text-align: center; margin-bottom: 48px; }
+
+    .quiz-wrapper {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    /* Progress */
+    .quiz-progress-bar-wrap {
+      background: rgba(255,255,255,0.06);
+      border-radius: 100px;
+      height: 4px;
+      margin-bottom: 40px;
+      overflow: hidden;
+    }
+
+    .quiz-progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      border-radius: 100px;
+      transition: width 0.4s ease;
+      width: 0%;
+    }
+
+    .quiz-step-label {
+      text-align: right;
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      margin-bottom: 10px;
+      letter-spacing: 0.06em;
+    }
+
+    /* Question card */
+    .quiz-card {
+      background: var(--bg-4);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius-lg);
+      padding: 40px 36px;
+      display: none;
+      animation: fadeSlide 0.35s ease forwards;
+    }
+
+    .quiz-card.active { display: block; }
+
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .quiz-question {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 28px;
+      line-height: 1.4;
+    }
+
+    /* Options */
+    .quiz-options { display: flex; flex-direction: column; gap: 12px; }
+
+    .quiz-option {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 15px 18px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: border-color var(--transition), background var(--transition);
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      background: transparent;
+      text-align: left;
+      width: 100%;
+    }
+
+    .quiz-option:hover {
+      border-color: var(--gold-border);
+      background: var(--gold-dim);
+      color: var(--text);
+    }
+
+    .quiz-option.selected {
+      border-color: var(--gold);
+      background: var(--gold-dim);
+      color: var(--text);
+    }
+
+    .quiz-option-letter {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.78rem;
+      font-weight: 600;
+      flex-shrink: 0;
+      transition: background var(--transition), border-color var(--transition), color var(--transition);
+      color: var(--text-dim);
+    }
+
+    .quiz-option.selected .quiz-option-letter,
+    .quiz-option:hover .quiz-option-letter {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: #0D0D0D;
+    }
+
+    /* Email step */
+    .quiz-email-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .quiz-email-input {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      padding: 15px 18px;
+      font-size: 1rem;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      transition: border-color var(--transition);
+      outline: none;
+      margin-bottom: 20px;
+    }
+
+    .quiz-email-input::placeholder { color: var(--text-dim); }
+    .quiz-email-input:focus { border-color: var(--gold); }
+
+    .quiz-email-privacy {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      text-align: center;
+      margin-top: 12px;
+      letter-spacing: 0.03em;
+    }
+
+    .quiz-email-privacy span { color: var(--gold); }
+
+    .btn-submit {
+      display: block;
+      width: 100%;
+      background: var(--gold);
+      color: #0D0D0D;
+      padding: 16px 24px;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+      letter-spacing: 0.02em;
+    }
+
+    .btn-submit:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(201,168,76,0.3);
+    }
+
+    .quiz-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .btn-back {
+      background: none;
+      border: none;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      padding: 8px 0;
+      transition: color var(--transition);
+    }
+
+    .btn-back:hover { color: var(--text-muted); }
+
+    /* ===========================
+       RESULTS SECTION
+    =========================== */
+    #results {
+      display: none;
+      background: var(--bg);
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+
+    #results .container { max-width: 680px; }
+
+    .results-header { text-align: center; margin-bottom: 48px; }
+
+    .results-profile-badge {
+      display: inline-block;
+      padding: 6px 18px;
+      border: 1px solid var(--gold-border);
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      background: var(--gold-dim);
+    }
+
+    .results-title {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    .results-text {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      line-height: 1.75;
+      font-weight: 300;
+    }
+
+    /* Plan included */
+    .plan-box {
+      background: var(--bg-3);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      margin: 40px 0;
+    }
+
+    .plan-box h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+
+    .plan-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+
+    .plan-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .plan-list li::before {
+      content: '▸';
+      color: var(--gold);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* CTA offer box */
+    .offer-box {
+      background: var(--bg-4);
+      border: 1px solid var(--gold-border);
+      border-radius: var(--radius-lg);
+      padding: 40px 36px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .offer-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .offer-badge {
+      display: inline-block;
+      background: rgba(201,168,76,0.12);
+      border: 1px solid var(--gold-border);
+      border-radius: 100px;
+      padding: 4px 14px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .offer-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .offer-timer-label {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    #countdown {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--gold);
+      margin-bottom: 28px;
+      letter-spacing: 0.04em;
+    }
+
+    .offer-price {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .price-old {
+      font-size: 1.2rem;
+      color: var(--text-dim);
+      text-decoration: line-through;
+      font-weight: 300;
+    }
+
+    .price-new {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--gold);
+    }
+
+    .price-currency {
+      font-size: 1rem;
+      color: var(--text-muted);
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+    }
+
+    .offer-note {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      margin-top: 14px;
+      letter-spacing: 0.03em;
+    }
+
+    /* ===========================
+       FAQ
+    =========================== */
+    #faq {
+      background: var(--bg-2);
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+
+    #faq .header { text-align: center; margin-bottom: 52px; }
+
+    .faq-list { max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; gap: 2px; }
+
+    .faq-item {
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--bg-3);
+      transition: border-color var(--transition);
+    }
+
+    .faq-item.open { border-color: var(--gold-border); }
+
+    .faq-q {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 24px;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 0.97rem;
+      font-weight: 500;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      text-align: left;
+      gap: 16px;
+      transition: color var(--transition);
+    }
+
+    .faq-item.open .faq-q { color: var(--gold); }
+
+    .faq-icon {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: var(--text-dim);
+      transition: transform var(--transition), background var(--transition), border-color var(--transition), color var(--transition);
+    }
+
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+      background: var(--gold);
+      border-color: var(--gold);
+      color: #0D0D0D;
+    }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding var(--transition);
+      font-size: 0.93rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      padding: 0 24px;
+    }
+
+    .faq-item.open .faq-a {
+      max-height: 200px;
+      padding: 0 24px 20px;
+    }
+
+    /* ===========================
+       FOOTER
+    =========================== */
+    footer {
+      background: #080808;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 40px 24px;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 16px;
+      letter-spacing: 0.05em;
+    }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      margin-bottom: 12px;
+      letter-spacing: 0.03em;
+    }
+
+    .footer-disclaimer {
+      font-size: 0.73rem;
+      color: #3a3a3a;
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* ===========================
+       RESPONSIVE
+    =========================== */
+    @media (max-width: 640px) {
+      section { padding: 72px 0; }
+
+      .compare-table thead th,
+      .compare-table tbody td { padding: 14px 14px; font-size: 0.88rem; }
+
+      .steps { grid-template-columns: 1fr; }
+
+      .stats-grid { grid-template-columns: 1fr; }
+
+      .stat-item:not(:last-child)::after {
+        right: auto; left: 20%; right: 20%;
+        top: auto; bottom: 0;
+        width: auto; height: 1px;
+      }
+
+      .quiz-card { padding: 28px 20px; }
+
+      .offer-box { padding: 28px 20px; }
+
+      nav { padding: 14px 16px; }
+
+      .plan-box { padding: 24px 20px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-trust { flex-direction: column; gap: 12px; }
+    }
+
+    /* ===========================
+       DECORATIVE DIVIDER
+    =========================== */
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin: 20px auto 0;
+    }
+
+    /* Scroll fade-in */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAV ===== -->
+  <nav>
+    <div class="nav-logo">Reto30</div>
+    <button class="nav-cta" onclick="scrollToQuiz()">Hacer el test →</button>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <span class="hero-eyebrow">Programa privado · 30 días</span>
+        <h1 class="hero-h1">Recupera tu <span>enfoque</span> en 30 días.</h1>
+        <p class="hero-sub">El sistema privado para hombres latinos que quieren retomar el control de su mente, su energía y su tiempo.</p>
+        <button class="btn-primary" id="hero-cta" onclick="scrollToQuiz()">Hacer el test gratuito →</button>
+        <div class="hero-trust">
+          <div class="hero-trust-item"><span>✦</span> 15,000+ hombres</div>
+          <div class="hero-trust-item"><span>✦</span> 100% privado</div>
+          <div class="hero-trust-item"><span>✦</span> Sin apps requeridas</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BEFORE / AFTER ===== -->
+  <section id="compare">
+    <div class="container">
+      <div class="header fade-up">
+        <span class="section-eyebrow">El contraste</span>
+        <h2 class="section-title">¿Te identificas con esto?</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="fade-up">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Antes del Reto30</th>
+              <th>Después del Reto30</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="icon-bad">✗</span>Te despiertas y agarras el celular antes que el agua</td>
+              <td><span class="icon-good">✓</span>Te despiertas con intención. Sin pantallas los primeros 30 minutos.</td>
+            </tr>
+            <tr>
+              <td><span class="icon-bad">✗</span>Pierdes horas sin saber a dónde van</td>
+              <td><span class="icon-good">✓</span>Cada hora tiene un propósito claro.</td>
+            </tr>
+            <tr>
+              <td><span class="icon-bad">✗</span>Tu concentración dura minutos</td>
+              <td><span class="icon-good">✓</span>Bloques de enfoque profundo de 2+ horas.</td>
+            </tr>
+            <tr>
+              <td><span class="icon-bad">✗</span>Te duermes scrolleando</td>
+              <td><span class="icon-good">✓</span>Duermes profundo. Te levantas descansado.</td>
+            </tr>
+            <tr>
+              <td><span class="icon-bad">✗</span>Sabes que algo tiene que cambiar, pero no sabes por dónde empezar</td>
+              <td><span class="icon-good">✓</span>Tienes un sistema. No necesitas motivación.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW IT WORKS ===== -->
+  <section id="how">
+    <div class="container">
+      <div class="header fade-up">
+        <span class="section-eyebrow">El proceso</span>
+        <h2 class="section-title">¿Cómo funciona?</h2>
+        <p class="section-sub">Tres pasos. Sin complicaciones. Sin excusas.</p>
+        <div class="divider"></div>
+      </div>
+      <div class="steps">
+        <div class="step fade-up">
+          <div class="step-num">01</div>
+          <h3>Haz el test</h3>
+          <p>2 minutos para identificar tu perfil de impulso digital. Sin juicios.</p>
+        </div>
+        <div class="step fade-up" style="transition-delay:0.12s">
+          <div class="step-num">02</div>
+          <h3>Recibe tu plan</h3>
+          <p>Un programa personalizado de 30 días basado en tu perfil específico.</p>
+        </div>
+        <div class="step fade-up" style="transition-delay:0.24s">
+          <div class="step-num">03</div>
+          <h3>Únete a la comunidad</h3>
+          <p>Accede a una comunidad privada de hombres haciendo lo mismo que tú.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STATS ===== -->
+  <section id="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item fade-up">
+          <div class="stat-number">15,000+</div>
+          <div class="stat-label">hombres en el programa</div>
+        </div>
+        <div class="stat-item fade-up" style="transition-delay:0.1s">
+          <div class="stat-number">84%</div>
+          <div class="stat-label">reportan mejor sueño</div>
+        </div>
+        <div class="stat-item fade-up" style="transition-delay:0.2s">
+          <div class="stat-number">30</div>
+          <div class="stat-label">días para cambiar el hábito</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== QUIZ ===== -->
+  <section id="quiz">
+    <div class="container">
+      <div class="header fade-up">
+        <span class="section-eyebrow">Test gratuito</span>
+        <h2 class="section-title">Descubre tu perfil de<br>disciplina digital</h2>
+        <p class="section-sub" style="margin:0 auto">Test gratuito &middot; 2 minutos &middot; Plan personalizado al final</p>
+        <div class="divider"></div>
+      </div>
+
+      <div class="quiz-wrapper fade-up">
+        <!-- Progress -->
+        <div class="quiz-step-label" id="step-label">Pregunta 1 de 9</div>
+        <div class="quiz-progress-bar-wrap">
+          <div class="quiz-progress-bar" id="progress-bar"></div>
+        </div>
+
+        <!-- Q1 -->
+        <div class="quiz-card active" id="q1">
+          <p class="quiz-question">¿Cuál es tu principal lucha digital ahora?</p>
+          <div class="quiz-options">
+            <button class="quiz-option" onclick="selectOption(this,'q1','A')"><span class="quiz-option-letter">A</span>Scroll infinito en redes sociales</button>
+            <button class="quiz-option" onclick="selectOption(this,'q1','B')"><span class="quiz-option-letter">B</span>Contenido que me hace sentir vacío después</button>
+            <button class="quiz-option" onclick="selectOption(this,'q1','C')"><span class="quiz-option-letter">C</span>Videojuegos o apuestas online</button>
+            <button class="quiz-option" onclick="selectOption(this,'q1','D')"><span class="quiz-option-letter">D</span>Todas las anteriores</button>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="quiz-card" id="q2">
+          <p class="quiz-question">¿Cuánto tiempo pasas en pantallas al día (fuera del trabajo)?</p>
+          <div class="quiz-options">
+            <button class="quiz-option" onclick="selectOption(this,'q2','A')"><span class="quiz-option-letter">A</span>Menos de 2 horas</button>
+            <button class="quiz-option" onclick="selectOption(this,'q2','B')"><span class="quiz-option-letter">B</span>2–4 horas</button>
+            <button class="quiz-option" onclick="selectOption(this,'q2','C')"><span class="quiz-option-letter">C</span>4–6 horas</button>
+            <button class="quiz-option" onclick="selectOption(this,'q2','D')"><span class="quiz-option-letter">D</span>Más de 6 horas</button>
+          </div>
+          <div class="quiz-nav">
+            <button class="btn-back" onclick="goBack(2)">← Anterior</button>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="quiz-card" id="q3">
+          <p class="quiz-question">¿Cuándo aparecen más los impulsos?</p>
+          <div class="quiz-options">
+            <button class="quiz-option" onclick="selectOption(this,'q3','A')"><span class="quiz-option-letter">A</span>Por la noche</button>
+            <button class="quiz-option" onclick="selectOption(this,'q3','B')"><span class="quiz-option-letter">B</span>Al despertar</button>
+            <button class="quiz-option" onclick="selectOption(this,'q3','C')"><span class="quiz-option-letter">C</span>Cuando estoy estresado</button>
+            <button class="quiz-option" onclick="selectOption(this,'q3','D')"><span class="quiz-option-letter">D</span>Cuando me aburro</button>
+          </div>
+          <div class="quiz-nav">
+            <button class="btn-back" onclick="goBack(3)">← Anterior</button>
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="quiz-card" id="q4">
+          <p class="quiz-question">¿Qué emoción los dispara?</p>
+          <div class="quiz-options">
+            <button class="quiz-option" onclick="selectOption(this,'q4','A')"><span class="quiz-option-letter">A</span>Ansiedad</button>
+            <button class="quiz-option" onclick="selectOption(this,'q4','B')"><span class="quiz-option-letter">B</span>Soledad</button>
+            <button class="quiz-option" onclick="selectOption(this,'q4','C')"><span class="quiz-option-letter">C</span>Aburrimiento</button>
+            <button class="quiz-option" onclick="selectOption(this,'q4','D')"><span class="quiz-option-letter">D</span>Estrés del trabajo</button>
+          </div>
+          <div class="quiz-nav">
+            <button class="btn-back" onclick="goBack(4)">← Anterior</button>
+          </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="quiz-card" id="q5">
+          <p class="quiz-question">¿Cuánto tiempo llevas intentando cambiar?</p>
+          <div class="quiz-options">
+            <button class="quiz-option" onclick="selectOption(this,'q5','A')"><span class="quiz-option-letter">A</span>Es la primera vez</button>
+            <button class="quiz-option" onclick="selectOption(this,'q5','B')"><span class="quiz-option-letter">B</span>Meses</button>
+            <button class="quiz-option" onclick="selectOption(this,'q5','C')"><span class="quiz-option-letter">C</span>Años</button>
+            <button class="quiz-option" onclick="selectOption(this,'q5','D')"><span class="quiz-option-letter">D</span>Más de 5 años</button>
+          </div>
+          <div class="quiz-nav">
+            <button class="btn-back" onclick="goBack(5)">← Anterior</button>
+          </div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="quiz-card" id="q6">
+          <p class="quiz-question">¿Qué edad tienes?</p>
+          <div class="quiz-options">
+            <button class="quiz-option" onclick="selectOption(this,'q6','A')"><span class="quiz-option-letter">A</span>18–24</button>
+            <button class="quiz-option" onclick="selectOption(this,'q6','B')"><span class="quiz-option-letter">B</span>25–30</button>
+            <button class="quiz-option" onclick="selectOption(this,'q6','C')"><span class="quiz-option-letter">C</span>31–37</button>
+            <button class="quiz-option" onclick="selectOption(this,'q6','D')"><span class="quiz-option-letter">D</span>38–45</button>
+          </div>
+          <div class="quiz-nav">
+            <button class="btn-back" onclick="goBack(6)">← Anterior</button>
+          </div>
+        </div>
+
+        <!-- Q7 -->
+        <div class="quiz-card" id="q7">
+          <p class="quiz-question">¿Qué quieres recuperar primero?</p>
+          <div class="quiz-options">
+            <button class="quiz-option" onclick="selectOption(this,'q7','A')"><span class="quiz-option-letter">A</span>Enfoque para trabajar o estudiar</button>
+            <button class="quiz-option" onclick="selectOption(this,'q7','B')"><span class="quiz-option-letter">B</span>Energía física</button>
+            <button class="quiz-option" onclick="selectOption(this,'q7','C')"><span class="quiz-option-letter">C</span>Disciplina diaria</button>
+            <button class="quiz-option" onclick="selectOption(this,'q7','D')"><span class="quiz-option-letter">D</span>Mi relación de pareja</button>
+          </div>
+          <div class="quiz-nav">
+            <button class="btn-back" onclick="goBack(7)">← Anterior</button>
+          </div>
+        </div>
+
+        <!-- Q8 -->
+        <div class="quiz-card" id="q8">
+          <p class="quiz-question">Tu nivel de compromiso:</p>
+          <div class="quiz-options">
+            <button class="quiz-option" onclick="selectOption(this,'q8','A')"><span class="quiz-option-letter">A</span>Quiero intentarlo</button>
+            <button class="quiz-option" onclick="selectOption(this,'q8','B')"><span class="quiz-option-letter">B</span>Estoy listo para cambiar</button>
+            <button class="quiz-option" onclick="selectOption(this,'q8','C')"><span class="quiz-option-letter">C</span>Necesito cambiar ya</button>
+            <button class="quiz-option" onclick="selectOption(this,'q8','D')"><span class="quiz-option-letter">D</span>Es urgente para mí</button>
+          </div>
+          <div class="quiz-nav">
+            <button class="btn-back" onclick="goBack(8)">← Anterior</button>
+          </div>
+        </div>
+
+        <!-- Q9 — Email capture -->
+        <div class="quiz-card" id="q9">
+          <p class="quiz-question">¿A dónde enviamos tu plan personalizado?</p>
+          <span class="quiz-email-label">Tu correo electrónico</span>
+          <input
+            type="email"
+            id="email-input"
+            class="quiz-email-input"
+            placeholder="tucorreo@email.com"
+            required
+          />
+          <button class="btn-submit" id="submit-btn" onclick="submitQuiz()">Ver mi plan →</button>
+          <p class="quiz-email-privacy"><span>🔒</span> 100% privado. Sin spam.</p>
+          <div class="quiz-nav">
+            <button class="btn-back" onclick="goBack(9)">← Anterior</button>
+          </div>
+        </div>
+      </div><!-- /.quiz-wrapper -->
+    </div>
+  </section>
+
+  <!-- ===== RESULTS ===== -->
+  <section id="results">
+    <div class="container">
+      <div class="results-header fade-up" id="results-header">
+        <span class="results-profile-badge" id="profile-badge">Tu perfil</span>
+        <h2 class="results-title" id="profile-title">—</h2>
+        <p class="results-text" id="profile-text">—</p>
+      </div>
+
+      <div class="plan-box fade-up">
+        <h3>Tu plan de 30 días incluye:</h3>
+        <ul class="plan-list">
+          <li>Protocolo diario personalizado según tu perfil</li>
+          <li>Tracker privado de impulsos</li>
+          <li>Comunidad anónima de hombres en el mismo proceso</li>
+          <li>Check-in diario con tu progreso</li>
+        </ul>
+      </div>
+
+      <div class="offer-box fade-up">
+        <span class="offer-badge">⚡ Oferta por tiempo limitado</span>
+        <h3 class="offer-title">Acceso especial al Manual Reto30</h3>
+        <div class="offer-timer-label">Esta oferta expira en</div>
+        <div id="countdown">10:00</div>
+        <div class="offer-price">
+          <span class="price-old">$299</span>
+          <span class="price-new">$99 <span class="price-currency">MXN</span></span>
+        </div>
+        <button class="btn-primary" id="buy-btn" style="width:100%;font-size:1.05rem;padding:18px" onclick="handleBuy()">Quiero mi manual →</button>
+        <p class="offer-note">Descarga inmediata &nbsp;·&nbsp; Pago único &nbsp;·&nbsp; 7 días de garantía</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section id="faq">
+    <div class="container">
+      <div class="header fade-up">
+        <span class="section-eyebrow">Dudas</span>
+        <h2 class="section-title">Preguntas frecuentes</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item fade-up">
+          <button class="faq-q" onclick="toggleFaq(this)" id="faq-q1" aria-expanded="false" aria-controls="faq-a1">
+            ¿Es completamente privado?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a" id="faq-a1" role="region" aria-labelledby="faq-q1">Sí. Tu perfil es anónimo. Nadie en la comunidad sabe tu nombre ni tu historia.</div>
+        </div>
+        <div class="faq-item fade-up" style="transition-delay:0.06s">
+          <button class="faq-q" onclick="toggleFaq(this)" id="faq-q2" aria-expanded="false" aria-controls="faq-a2">
+            ¿Necesito instalar alguna app?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a" id="faq-a2" role="region" aria-labelledby="faq-q2">No. El programa funciona por email y acceso web. Sin descargas obligatorias.</div>
+        </div>
+        <div class="faq-item fade-up" style="transition-delay:0.12s">
+          <button class="faq-q" onclick="toggleFaq(this)" id="faq-q3" aria-expanded="false" aria-controls="faq-a3">
+            ¿Qué pasa si no tengo tiempo?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a" id="faq-a3" role="region" aria-labelledby="faq-q3">El sistema está diseñado para 10–15 minutos al día. Si tienes tiempo para scrollear, tienes tiempo para el reto.</div>
+        </div>
+        <div class="faq-item fade-up" style="transition-delay:0.18s">
+          <button class="faq-q" onclick="toggleFaq(this)" id="faq-q4" aria-expanded="false" aria-controls="faq-a4">
+            ¿Funciona sin fuerza de voluntad?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a" id="faq-a4" role="region" aria-labelledby="faq-q4">Sí. Reto30 está diseñado exactamente para eso — reemplazar la voluntad con estructura y comunidad.</div>
+        </div>
+        <div class="faq-item fade-up" style="transition-delay:0.24s">
+          <button class="faq-q" onclick="toggleFaq(this)" id="faq-q5" aria-expanded="false" aria-controls="faq-a5">
+            ¿Hay reembolso?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a" id="faq-a5" role="region" aria-labelledby="faq-q5">Sí, 7 días de garantía. Si no ves valor, te devolvemos el dinero sin preguntas.</div>
+        </div>
+        <div class="faq-item fade-up" style="transition-delay:0.30s">
+          <button class="faq-q" onclick="toggleFaq(this)" id="faq-q6" aria-expanded="false" aria-controls="faq-a6">
+            ¿En qué se diferencia de otras apps?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a" id="faq-a6" role="region" aria-labelledby="faq-q6">No bloqueamos nada. No te sermoneamos. Solo te damos el sistema y la comunidad. El resto lo haces tú.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-logo">Reto30</div>
+    <p class="footer-copy">Reto30 © 2026 &nbsp;·&nbsp; Programa privado de disciplina digital</p>
+    <p class="footer-disclaimer">Este programa no es sustituto de ayuda profesional. Si estás atravesando una crisis, busca apoyo de un profesional de salud mental.</p>
+  </footer>
+
+  <!-- ===== JAVASCRIPT ===== -->
+  <script>
+    /* ─────────────────────────────────────────
+       SCROLL TO QUIZ
+    ───────────────────────────────────────── */
+    function scrollToQuiz() {
+      document.getElementById('quiz').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    /* ─────────────────────────────────────────
+       FADE-UP OBSERVER
+    ───────────────────────────────────────── */
+    (function () {
+      const els = document.querySelectorAll('.fade-up');
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+        });
+      }, { threshold: 0.1 });
+      els.forEach(el => obs.observe(el));
+    })();
+
+    /* ─────────────────────────────────────────
+       QUIZ STATE
+    ───────────────────────────────────────── */
+    const TOTAL_QUESTIONS = 9;
+    let currentQuestion = 1;
+    const answers = {};  // { q1: 'A', q2: 'C', ... }
+
+    function updateProgress() {
+      const pct = ((currentQuestion - 1) / TOTAL_QUESTIONS) * 100;
+      document.getElementById('progress-bar').style.width = pct + '%';
+      const label = currentQuestion <= TOTAL_QUESTIONS
+        ? `Pregunta ${currentQuestion} de ${TOTAL_QUESTIONS}`
+        : `Pregunta ${TOTAL_QUESTIONS} de ${TOTAL_QUESTIONS}`;
+      document.getElementById('step-label').textContent = label;
+    }
+
+    function showQuestion(num) {
+      document.querySelectorAll('.quiz-card').forEach(c => c.classList.remove('active'));
+      const target = document.getElementById('q' + num);
+      if (target) { target.classList.add('active'); }
+      currentQuestion = num;
+      updateProgress();
+    }
+
+    function selectOption(btn, qId, value) {
+      // Highlight selection
+      btn.closest('.quiz-options').querySelectorAll('.quiz-option').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      answers[qId] = value;
+
+      // Auto-advance after brief delay
+      setTimeout(() => {
+        const next = parseInt(qId.replace('q', '')) + 1;
+        if (next <= TOTAL_QUESTIONS) { showQuestion(next); }
+      }, 280);
+    }
+
+    function goBack(fromQ) {
+      if (fromQ > 1) { showQuestion(fromQ - 1); }
+    }
+
+    updateProgress();
+
+    /* ─────────────────────────────────────────
+       SUBMIT QUIZ
+    ───────────────────────────────────────── */
+    function submitQuiz() {
+      const emailInput = document.getElementById('email-input');
+      const email = emailInput.value.trim();
+
+      if (!email || !isValidEmail(email)) {
+        emailInput.style.borderColor = '#C0392B';
+        emailInput.focus();
+        return;
+      }
+      emailInput.style.borderColor = '';
+
+      // Save to localStorage
+      localStorage.setItem('reto30_email', email);
+      localStorage.setItem('reto30_answers', JSON.stringify(answers));
+
+      // Determine profile
+      const profile = determineProfile(answers);
+
+      // Update progress bar to 100%
+      document.getElementById('progress-bar').style.width = '100%';
+      document.getElementById('step-label').textContent = '¡Completado!';
+
+      // Show results
+      showResults(profile);
+    }
+
+    function isValidEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    /* ─────────────────────────────────────────
+       PROFILE LOGIC
+    ───────────────────────────────────────── */
+    const profiles = {
+      A: {
+        badge: 'Perfil: Guerrero Nocturno',
+        title: 'El Guerrero Nocturno',
+        text: 'Tus impulsos digitales se activan principalmente en la noche, impulsados por el estrés acumulado del día. El 87% de hombres con tu perfil reportan mejoras significativas siguiendo un plan de descompresión nocturna estructurado.'
+      },
+      B: {
+        badge: 'Perfil: Ansioso Digital',
+        title: 'El Ansioso Digital',
+        text: 'Usas las pantallas como escape de la ansiedad o la soledad. No es debilidad — es un patrón aprendido. Con el sistema correcto, puedes reemplazar ese escape con hábitos que realmente te recarguen.'
+      },
+      C: {
+        badge: 'Perfil: Disciplinado Bloqueado',
+        title: 'El Disciplinado Bloqueado',
+        text: 'Sabes exactamente lo que tienes que hacer. El problema no es conocimiento — es que no tienes un sistema externo que te mantenga en movimiento. Reto30 es ese sistema.'
+      }
+    };
+
+    function determineProfile(ans) {
+      if (ans['q3'] === 'A') return 'A'; // nighttime impulses → Guerrero Nocturno
+      if (ans['q4'] === 'A' || ans['q4'] === 'B') return 'B'; // anxiety/loneliness → Ansioso Digital
+      return 'C'; // default → Disciplinado Bloqueado
+    }
+
+    function showResults(profileKey) {
+      const p = profiles[profileKey];
+      document.getElementById('profile-badge').textContent = p.badge;
+      document.getElementById('profile-title').textContent = p.title;
+      document.getElementById('profile-text').textContent = p.text;
+
+      const resultsSection = document.getElementById('results');
+      resultsSection.style.display = 'block';
+
+      // Trigger fade-ups in results section
+      setTimeout(() => {
+        resultsSection.querySelectorAll('.fade-up').forEach(el => el.classList.add('visible'));
+      }, 100);
+
+      // Smooth scroll
+      setTimeout(() => {
+        resultsSection.scrollIntoView({ behavior: 'smooth' });
+      }, 150);
+
+      // Start countdown
+      startCountdown();
+    }
+
+    /* ─────────────────────────────────────────
+       COUNTDOWN TIMER — 10 minutes
+    ───────────────────────────────────────── */
+    let countdownInterval = null;
+
+    function startCountdown() {
+      const DURATION = 10 * 60; // 600 seconds
+      let remaining = DURATION;
+
+      const el = document.getElementById('countdown');
+
+      function tick() {
+        const m = Math.floor(remaining / 60);
+        const s = remaining % 60;
+        el.textContent = String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+
+        if (remaining <= 0) {
+          clearInterval(countdownInterval);
+          el.textContent = '00:00';
+          el.style.color = '#555';
+          document.getElementById('buy-btn').textContent = 'Oferta expirada';
+          document.getElementById('buy-btn').style.background = '#333';
+          document.getElementById('buy-btn').style.color = '#666';
+          document.getElementById('buy-btn').style.cursor = 'not-allowed';
+        }
+        remaining--;
+      }
+
+      tick();
+      countdownInterval = setInterval(tick, 1000);
+    }
+
+    function handleBuy() {
+      const btn = document.getElementById('buy-btn');
+      if (btn.textContent === 'Oferta expirada') return;
+      // Placeholder — connect to backend later
+      alert('¡Redirigiendo al checkout! Conecta tu pasarela de pago aquí.');
+    }
+
+    /* ─────────────────────────────────────────
+       FAQ ACCORDION
+    ───────────────────────────────────────── */
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+
+      // Close all
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+      });
+
+      // Toggle current
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    }
+  </script>
+</body>
+</html>
